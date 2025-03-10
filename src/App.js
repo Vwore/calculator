@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 // '2+3+5*6*7+25+3-5'
 function calc(exp) {
+  if(exp==='0/0') return NaN
+  else if(exp==='1/0') return Infinity;
   const arr = [];
   let i = 0;
   while (i < exp.length) {
@@ -41,7 +43,9 @@ function calc(exp) {
     }
     // console.log(val,total);
     if (arr[i] === "+") total += Number(val);
-    else total -= val;
+    else if(arr[i]==='-') total -= val;
+    else if(arr[i]==='*') total*=val;
+    else total/=val;
     i = j;
   }
   console.log("total", total);
@@ -106,6 +110,7 @@ function App() {
         onChange={(e) => {
           setInputValue(e.target.value);
         }}
+        type="text"
       ></input>
       <h5>{result}</h5>
       <div className="btn-cont">
