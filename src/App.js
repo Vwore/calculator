@@ -4,6 +4,7 @@ import "./App.css";
 function calc(exp) {
   if(exp==='0/0') return NaN
   else if(exp==='1/0') return Infinity;
+  else if(exp==='') return Error;
   const arr = [];
   let i = 0;
   while (i < exp.length) {
